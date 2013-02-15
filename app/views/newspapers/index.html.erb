@@ -1,0 +1,26 @@
+<h1>Listing newspapers</h1>
+<%= paginate @newspapers %>
+<table>
+<% @newspapers.each do |newspaper| %>
+  <tr>
+    <td>스크랩</td>
+  </tr> 
+  <tr>
+    <th>Title</th><td><%=  newspaper.title %></td>
+  </tr>
+  <tr>
+    <th>Date</th><td><%= newspaper.pubDate %></td>
+  </tr>
+  <tr>
+    <th>link</th><td><%= link_to '기사 읽기...', newspaper.link %></td>
+  </tr>
+  <tr>
+    <th>Description</th><td><%= newspaper.description %></td>
+  </tr>
+  
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Newspaper', new_newspaper_path %>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<h1>Category</h1>
+
+<%= link_to '전체',  newspapers_path(category: 'all') %>
+<%= link_to '정치',  newspapers_path(category: 'politics') %>
+<%= link_to '경제',  newspapers_path(category: 'economics') %>
+<%= link_to '국제',  newspapers_path(category: 'international') %>
+<%= link_to '사회',  newspapers_path(category: 'society') %>
+<%= link_to '스포츠,문화,연예', newspapers_path(category: 'culture') %>
+
+
+
+<%= yield %>
+
+</body>
+</html>
