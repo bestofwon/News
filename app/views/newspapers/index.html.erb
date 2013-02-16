@@ -2,9 +2,11 @@
 <%= paginate @newspapers %>
 <table>
 <% @newspapers.each do |newspaper| %>
-  <tr>
-    <td>스크랩</td>
-  </tr> 
+  <% if user_signed_in? %>
+    <tr>
+        <td><%= button_to '스크랩', clips_path(newspaper: newspaper) %></td>
+    </tr> 
+  <% end %>
   <tr>
     <th>Title</th><td><%=  newspaper.title %></td>
   </tr>

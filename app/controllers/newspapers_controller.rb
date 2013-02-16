@@ -5,6 +5,8 @@ class NewspapersController < ApplicationController
   require 'open-uri'
 
   def index
+    session[:return_to] ||= request.referer
+
     publishers = Publisher.find_all_by_category(params[:category])
     publishers.each do |publisher|
       doc = Nokogiri::XML(open(publisher.link))
@@ -13,7 +15,8 @@ class NewspapersController < ApplicationController
         news = Newspaper.new
         news.title = item.at_xpath("title").text
         news.pubDate = item.at_xpath("pubDate").text
-        news.description = item.at_xpath("description").text
+        news.description = item.at_xpath("description").text.gsub(/<\/?[^>]+>/, '')
+        news.link = item.at_xpath("link").text
         news.publisher = publisher.name
         news.category = params[:category]
         news.save

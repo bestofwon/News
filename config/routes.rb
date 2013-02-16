@@ -1,10 +1,10 @@
-News::Application.routes.draw do
-  resources :newspapers
+News::Application.routes.draw do  devise_for :users
 
+  resources :newspapers
 
   resources :publishers
 
-
+  resources :clips
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
