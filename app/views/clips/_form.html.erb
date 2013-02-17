@@ -11,29 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <p class = "news_title">타이틀</p>
-    <p><%= Newspaper.find(@clip_newspaper).title %></p>
-  </div>
-  <div class="field">
-    <p class = "news_title">날짜</p>
-    <p><%= Newspaper.find(@clip_newspaper).pubDate %></p>
-  </div>
-  <div class="field">
-    <p class = "news_title">링크</p>
-    <p><%= Newspaper.find(@clip_newspaper).link %></p>
-  </div>
-  <div class="field">
-    <p class = "news_title">신문사</p>
-    <p><%= Newspaper.find(@clip_newspaper).publisher %></p>
-  </div>
-  <div class="field">
-    <p class = "news_title">내용</p>
-    <p><%= Newspaper.find(@clip_newspaper).description %></p>
-  </div>
-  <div class="field">
-    <%= f.label :memo %><br />
-    <%= f.text_area :memo %>
+  <table class="table table-striped">
+    <tr><th>타이틀</th><td><%= Newspaper.find(@clip_newspaper).title %></td></tr>
+    <tr><th>날짜</th><td><%= Newspaper.find(@clip_newspaper).pubDate %></td></tr>
+    <tr><th>링크</th><td><%= Newspaper.find(@clip_newspaper).link %></td></tr>
+    <tr><th>신문사</th><td><%= Newspaper.find(@clip_newspaper).publisher %></td></tr>
+    <tr><th>내용</th><td><%= Newspaper.find(@clip_newspaper).description %></td></tr>
+  </table>
+  
+  <div class="control-group">
+    <%= f.label :memo, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :memo, class: 'text_area'%>
+    </div
   </div>
   <div class="actions">
     <%= f.submit %>

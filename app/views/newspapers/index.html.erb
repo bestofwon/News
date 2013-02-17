@@ -1,12 +1,8 @@
 <h1>Listing newspapers</h1>
 <%= paginate @newspapers %>
-<table>
+
 <% @newspapers.each do |newspaper| %>
-  <% if user_signed_in? %>
-    <tr>
-        <td><%= button_to '스크랩', clips_path(newspaper: newspaper) %></td>
-    </tr> 
-  <% end %>
+  <table class="table table-stripped">
   <tr>
     <th>Title</th><td><%=  newspaper.title %></td>
   </tr>
@@ -19,10 +15,12 @@
   <tr>
     <th>Description</th><td><%= newspaper.description %></td>
   </tr>
-  
+  </table>
+  <% if user_signed_in? %>
+   <%= button_to '스크랩', clips_path(newspaper: newspaper), class: 'btn btn-mini' %>
+  <% end %>
+
 <% end %>
-</table>
+
 
 <br />
-
-<%= link_to 'New Newspaper', new_newspaper_path %>

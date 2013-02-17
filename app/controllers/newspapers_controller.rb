@@ -2,28 +2,15 @@ class NewspapersController < ApplicationController
   # GET /newspapers
   # GET /newspapers.json
 
-  require 'open-uri'
 
   def index
-    session[:return_to] ||= request.referer
-
-    publishers = Publisher.find_all_by_category(params[:category])
-    publishers.each do |publisher|
-      doc = Nokogiri::XML(open(publisher.link))
-      items = doc.xpath("//item")
-      items.each do |item|
-        news = Newspaper.new
-        news.title = item.at_xpath("title").text
-        news.pubDate = item.at_xpath("pubDate").text
-        news.description = item.at_xpath("description").text.gsub(/<\/?[^>]+>/, '')
-        news.link = item.at_xpath("link").text
-        news.publisher = publisher.name
-        news.category = params[:category]
-        news.save
-      end 
+    if not params[:category]
+      
+      array = Newspaper.find_all_by_category('economics')
+    else
+      array = Newspaper.find_all_by_category(params[:category])
     end
 
-    array = Newspaper.find_all_by_category(params[:category])
     @newspapers = Kaminari.paginate_array(array).page(params[:page]).per(10) 
  
     respond_to do |format|
